@@ -1,0 +1,54 @@
+# Top K Frequent Elements
+
+**Topic:** Arrays & Hashing  
+**Difficulty:** Medium  
+**Language:** Python
+
+**Problem:** [Top K Frequent Elements — NeetCode](https://neetcode.io/problems/top-k-elements-in-list)
+
+## My Approach
+
+In this problem, I need to find the `k` elements that appear most frequently in an array.
+
+For example, if the input is `[1, 1, 1, 2, 2, 3]` and `k = 2`, the answer is `[1, 2]` because `1` appears three times and `2` appears twice.
+
+### How I Solved It
+
+I used a dictionary to count the frequency of each number and then used a technique called **Bucket Sort** to find the most frequent elements.
+
+1. First, I counted how many times each number appeared using a dictionary called `count`.
+2. I created a list of buckets. Each index represents a possible frequency.
+3. I placed each number into the bucket corresponding to its frequency.
+4. I started traversing the buckets from the highest frequency to the lowest.
+5. I added numbers to the result until I collected `k` elements.
+
+The useful part is that I don't need to sort all the numbers by frequency. Instead, I can use their frequency as the bucket index.
+
+## Time and Space Complexity
+
+Let `n` be the number of elements in the input array.
+
+- **Time:** `O(n)` — counting frequencies, filling the buckets, and collecting the answer take linear time.
+- **Space:** `O(n)` — the frequency dictionary and bucket list require linear space.
+
+## My Solution
+
+[View submission-0.py](./submission-0.py)
+
+## What I Learned
+
+- A dictionary helps count the frequency of each element.
+- Bucket Sort can be useful when the possible frequency range is known.
+- The frequency of a number cannot be greater than the length of the input array.
+- I can avoid comparison-based sorting when a problem has a suitable structure.
+
+## Practice Again
+
+- [ ] Solve this problem again without looking at my code.
+- [ ] Understand why the bucket list has `len(nums) + 1` positions.
+- [ ] Explain how traversing backwards helps find the most frequent elements.
+- [ ] Compare this approach with using a heap or sorting the frequency counts.
+
+---
+
+*DSA practice — learning patterns that help me solve problems more efficiently.*
