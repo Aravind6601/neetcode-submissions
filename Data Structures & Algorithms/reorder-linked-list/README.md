@@ -1,87 +1,42 @@
-Reorder Linked List
-Problem Details
-- Topic: Linked List
-- Difficulty: Medium
-- Language: Python
-- Problem: Reorder Linked
-  List
-My Approach
-I solved this by breaking the problem into three steps:
-1. Find the middle of the linked list using slow and fast pointers.
-2. Reverse the second half of the list.
-3. Merge both halves by taking one node from each half alternately.
-The main idea is to rearrange the existing nodes in-place instead of
-creating a new list or storing them in an array.
-How I Solved It
-1. Find the middle
-I initialize both slow and fast at head.
-- slow moves one node at a time.
-- fast moves two nodes at a time.
-When the loop ends, slow is at the middle of the list (or the end of
-the first half).
+# Reorder Linked List
 
-I take slow.next as the start of the second half and set
-slow.next = None to separate the two halves.
-2. Reverse the second half
-I use three pointers:
-- prev -- keeps track of the previous node.
-- curr -- points to the node I'm currently processing.
-- nxt -- saves the next node before I change the link.
-For every node, I save the next node, point the current node backwards,
-and move the pointers forward. Once the loop finishes, prev points to
-the head of the reversed second half.
-3. Merge the two halves
-I use first for the first half and second for the reversed second
-half.
+## Problem Details
+- **Problem:** Reorder Linked List
+- **Difficulty:** Medium
+- **Topic:** Linked List
+- **Language:** Python
+- **Problem Link:** [NeetCode – Reorder Linked List](https://neetcode.io/problems/reorder-linked-list)
 
-In each iteration:
-1. Save first.next in t1.
-2. Save second.next in t2.
-3. Connect first to second.
-4. Connect second to t1.
-5. Move both pointers to their saved next nodes.
-I continue until all nodes from the second half are inserted.
-Dry Run
-Input: 1 → 2 → 3 → 4 → 5
+## My Approach
 
-  Stage                         Linked list
-  Original                      1 → 2 → 3 → 4 → 5
-After splitting               1 → 2 → 3
-After reversing second half   1 → 2 → 3
-After merging                 1 → 5 → 2 → 4 → 3
+I used three steps to solve this problem:
 
-Output: 1 → 5 → 2 → 4 → 3
-The Part I Need to Remember
-This problem combines three linked-list techniques:
-- Slow and fast pointers to find the middle.
-- Reversing a linked list using prev, curr, and nxt.
-- Merging two lists by carefully changing their next pointers.
-While merging, I must save both next nodes before changing any links.
-Otherwise, I can lose access to the remaining part of either list.
+1. **Find the middle:** Use slow and fast pointers to reach the middle of the linked list.
+2. **Reverse the second half:** Disconnect the list at the middle and reverse the remaining nodes.
+3. **Merge both halves:** Connect nodes alternately, taking one from the first half and one from the reversed second half.
 
-Also, slow.next = None is important because it separates the first
-half from the second half before reversing it.
-Complexity Analysis
-- Time Complexity: O(n) --- Finding the middle, reversing the
-  second half, and merging the lists each take linear time.
-- Space Complexity: O(1) --- I only use a fixed number of
-  pointers and modify the list in-place.
-My Solution
+This way, I can reorder the list without creating another linked list.
+
+## Time Complexity
+- **O(n)** – Finding the middle, reversing the second half, and merging both halves each take linear time.
+
+## Space Complexity
+- **O(1)** – Everything is done by changing pointers. No extra data structure is used.
+
+## My Solution
+
 [View submission-0.py](./submission-0.py)
-What I Learned
-- Slow and fast pointers can find the middle without counting all the
-  nodes.
-- I can reverse only a part of a linked list instead of reversing the
-  entire list.
-- Saving next pointers before changing links prevents losing the
-  remaining nodes.
-- Combining smaller linked-list techniques can solve a more complex
-  reordering problem.
-Practice Again
-- [ ] Explain how slow and fast pointers find the middle.
-- [ ] Dry-run the reversal of the second half.
-- [ ] Explain why the two halves must be separated before reversing.
-- [ ] Dry-run the merge for both odd- and even-length lists.
-- [ ] Write the complete solution again without looking at the code.
-Key takeaway: Find the middle, reverse the second half, and merge
-both halves alternately --- all in-place.
+
+## What I Learned
+
+- Slow and fast pointers can help find the middle of a linked list in one traversal.
+- Reversing a linked list can be done by changing the `next` pointers.
+- Before merging, I need to save the next nodes (`t1` and `t2`) so I don't lose the remaining parts of either list.
+- Combining multiple linked-list techniques can solve a problem without using extra space.
+
+## Revision Checklist
+
+- [ ] Find the middle using slow and fast pointers.
+- [ ] Reverse the second half of a linked list.
+- [ ] Merge two linked lists alternately.
+- [ ] Solve the problem again without looking at the code.
